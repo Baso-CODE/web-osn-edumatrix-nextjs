@@ -80,9 +80,7 @@ export default function HeroKelurahan({
               rel="noopener noreferrer"
               aria-label={`Daftar Sekarang via WhatsApp dengan ${activeContact.nama_cs}`}
               className="group relative inline-flex w-full md:w-[50%] lg:w-[40%] h-14 items-center justify-center rounded-full bg-[#F68507] py-1 pl-6 pr-14 font-medium text-neutral-50 cursor-pointer">
-              <span className="z-10 pr-2 font-bold">
-                Daftar Sekarang ({activeContact.nama_cs})
-              </span>
+              <span className="z-10 pr-2 font-bold">Daftar Sekarang</span>
               <div className="absolute right-1 inline-flex h-12 w-12 items-center justify-end rounded-full bg-[#04397d] transition-[width] group-hover:w-[calc(100%-8px)]">
                 <div className="mr-3.5 flex items-center justify-center">
                   <svg

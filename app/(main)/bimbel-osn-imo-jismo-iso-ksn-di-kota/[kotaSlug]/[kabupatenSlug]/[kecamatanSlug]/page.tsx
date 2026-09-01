@@ -50,8 +50,8 @@ export async function generateMetadata({
 
   const imageUrl = "https://bimbeledumatrix.com/images/osn-thumbnail.webp";
 
-  const title = `Bimbel & Les Olimpiade OSN ISMO IMO JISMO ${kecamatanName} SD SMP SMA`;
-  const description = `Bimbel Olimpiade ${kecamatanName} untuk OSN, KSN, OSP, OSK, ISMO, IMO, JISMO semua jenjang SD SMP SMA. Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi & Ekonomi. Program intensif dan privat terbaik.`;
+  const title = `Bimbel & Les Privat Olimpiade OSN ISMO IMO JISMO ${kecamatanName} SD SMP SMA`;
+  const description = `Bimbel Les Privat Olimpiade ${kecamatanName} untuk OSN, KSN, OSP, OSK, ISMO, IMO, JISMO semua jenjang SD SMP SMA. Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi & Ekonomi. Program intensif dan privat terbaik.`;
   const keywords = [
     `les privat olimpiade ${kecamatanName}`,
     `bimbel olimpiade ${kecamatanName}`,

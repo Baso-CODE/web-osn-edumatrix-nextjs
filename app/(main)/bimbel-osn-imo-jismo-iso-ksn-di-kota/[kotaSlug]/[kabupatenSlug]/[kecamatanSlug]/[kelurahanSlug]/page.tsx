@@ -51,8 +51,8 @@ export async function generateMetadata({
 
   const imageUrl = `${baseUrl}/images/osn-thumbnail.webp`;
 
-  const title = `Bimbel & Les Olimpiade OSN ISMO IMO JISMO ${kelurahanName} SD SMP SMA`;
-  const description = `Bimbel Olimpiade ${kelurahanName} untuk OSN, KSN, OSP, OSK, ISMO, IMO, JISMO semua jenjang SD SMP SMA. Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi & Ekonomi. Program privat intensif dan terpercaya.`;
+  const title = `Bimbel & Les Privat Olimpiade OSN ISMO IMO JISMO ${kelurahanName} SD SMP SMA`;
+  const description = `Bimbel Les Privat Olimpiade ${kelurahanName} untuk OSN, KSN, OSP, OSK, ISMO, IMO, JISMO semua jenjang SD SMP SMA. Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi & Ekonomi. Program privat intensif dan terpercaya.`;
   const keywords = [
     `les privat olimpiade ${kelurahanName}`,
     `bimbel olimpiade ${kelurahanName}`,
