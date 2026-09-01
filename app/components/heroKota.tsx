@@ -26,12 +26,22 @@ export default function HeroKota({
   if (!activeCs || activeCs.length === 0) return null;
   const activeContact = activeCs[0];
 
-  // Buat link dinamis dengan nama CS yang aktif
-  const dynamicLink = `https://api.whatsapp.com/send?phone=${activeContact.nomor_hp.replace(
-    "+",
-    "",
-  )}&text=${encodeURIComponent(
-    `Halo ${activeContact.nama_cs} https://bimbeledumatrix.com/, Saya ingin tanya program belajar OSN di ${kotaName} yang ada di Edumatrix Indonesia. Apa saja jenis program belajar dan pilihan paket.`,
+  // 1. Format nomor HP (ubah 08... menjadi 628... agar API WA valid)
+  let formattedPhone = activeContact.nomor_hp;
+  if (formattedPhone.startsWith("0")) {
+    formattedPhone = "62" + formattedPhone.substring(1);
+  } else if (formattedPhone.startsWith("+")) {
+    formattedPhone = formattedPhone.substring(1);
+  }
+
+  // 2. Ekstrak otomatis link katalog unik milik CS dari link_cta bawaan data
+  const decodedLink = decodeURIComponent(activeContact.link_cta);
+  const catalogMatch = decodedLink.match(/https:\/\/wa\.me\/p\/[0-9]+\/[0-9]+/);
+  const catalogUrl = catalogMatch ? catalogMatch[0] : "";
+
+  // 3. Buat link dinamis baru yang menggabungkan nama Kota DAN link Katalog
+  const dynamicLink = `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodeURIComponent(
+    `Halo ${activeContact.nama_cs} (https://bimbeledumatrix.com/), saya ingin tanya program belajar OSN di ${kotaName} yang ada di Edumatrix Indonesia. Apa saja jenis program belajar dan pilihan paketnya?\n\n---\n*Katalog Kisah Sukses & Bukti Prestasi Siswa Edumatrix:*\n${catalogUrl}`,
   )}`;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
