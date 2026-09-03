@@ -1,7 +1,6 @@
 import { dummyContactCsData } from "@/app/components/data/contactCs.dummyData";
 import Accordion from "@/app/components/faq/Accordion";
 import Features from "@/app/components/features";
-import FomoTicker from "@/app/components/fomoTicker";
 import GoldenTicketShowcase from "@/app/components/goldenTicket";
 import HeroKabupaten from "@/app/components/heroKabupaten";
 import AsalSekolahSiswaEdumatrix from "@/app/components/home/asalSekolahSiswaEdumatrix";
@@ -300,7 +299,7 @@ edumatrix indonesia
         <Promo />
         <Contact />
         <MediaMassa />
-        <FomoTicker namaWilayah={kabupatenName} />
+        {/* <FomoTicker namaWilayah={kabupatenName} /> */}
       </div>
     </>
   );

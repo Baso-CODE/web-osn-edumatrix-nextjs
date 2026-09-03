@@ -55,14 +55,33 @@ export default function HeroKota({
 
   return (
     <section className="relative bg-[#04397D] flex items-center justify-center">
-      <div className="py-16 px-2 mt-16 text-white max-w-310 lg:min-h-[70vh] xl:min-h-[73vh]">
+      <div className="py-16 px-2 mt-16 text-white max-w-310 lg:min-h-[70vh] xl:min-h-[82vh]">
         <div className="flex flex-col lg:flex-row gap-14">
           {/* ===== TEXT SECTION ===== */}
           <div className="lg:w-1/2">
-            <h1 className="text-[38px] uppercase font-bold leading-10 font-title mb-8">
+            <h1 className="text-[38px] uppercase font-bold leading-10 font-title mb-6">
               BIMBEL & LES PRIVAT OSN KSN IMO SD SMP SMA Di{" "}
               <span className="text-[#faae17]">{kotaName}</span> TERBAIK #1
             </h1>
+
+            {/* Badges Area */}
+            <div className="flex flex-col gap-3 mb-8">
+              {/* Badge Online */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-blue-400/60 bg-white/5 rounded-full w-fit backdrop-blur-sm shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span className="text-white text-[13px] md:text-[14px] font-medium tracking-wide">
+                  🌐 Online — Seluruh Indonesia
+                </span>
+              </div>
+
+              {/* Badge Offline (Dinamis dengan kotaName) */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#faae17]/80 bg-white/5 rounded-full w-fit backdrop-blur-sm shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#faae17] animate-pulse"></span>
+                <span className="text-[#faae17] text-[13px] md:text-[14px] font-medium tracking-wide capitalize">
+                  📍 Offline — Request Kota {kotaName} (Estimasi 3 Hari)
+                </span>
+              </div>
+            </div>
 
             <p className="mb-4 font-desc text-[1rem] leading-4.75 font-medium">
               Edumatrix hadir di{" "}

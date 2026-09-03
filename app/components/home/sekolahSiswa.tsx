@@ -5,28 +5,33 @@ import Marquee from "react-fast-marquee";
 export default async function SekolahSiswa() {
   const images = await getDataAsalSekolahDummy();
 
+  if (!images || images.length === 0) return null;
+
   return (
-    <div className="bg-[#04397D] items-center flex justify-center relative">
-      <div className="max-w-310 px-2">
-        <div className="overflow-hidden whitespace-nowrap py-4">
-          <Marquee
-            direction="left"
-            speed={85}
-            gradient={false}
-            className="flex">
-            {images.map((image) => (
+    <section className="bg-[#04397D] w-full flex justify-center items-center py-10 overflow-hidden">
+      <div className="w-full max-w-310">
+        <Marquee
+          direction="left"
+          speed={50}
+          pauseOnHover={true}
+          gradient={false}
+          className="flex items-center overflow-y-hidden py-4">
+          {images.map((image) => (
+            <div
+              key={image.id}
+              className="mx-4 md:mx-6 transition-transform duration-300 hover:scale-105 cursor-pointer">
               <Image
-                key={image.id}
-                src={`${image.foto_sekolah}`}
-                alt={image.nama_sekolah}
-                width={400}
-                height={600}
-                className="inline-block mx-1 rounded-md"
+                src={image.foto_sekolah}
+                alt={image.nama_sekolah || "Asal Sekolah Siswa"}
+                width={300}
+                height={200}
+                className="w-[200px] h-[52vh] md:w-[16vw] md:h-[72vh] object-fill rounded-xl shadow-lg border border-white/20 bg-white/5"
+                loading="lazy"
               />
-            ))}
-          </Marquee>
-        </div>
+            </div>
+          ))}
+        </Marquee>
       </div>
-    </div>
+    </section>
   );
 }

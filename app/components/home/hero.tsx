@@ -5,7 +5,7 @@ import HeroCTAClient from "./heroCTAClient";
 export default function Hero() {
   return (
     <section className="relative bg-[#04397D] flex items-center justify-center">
-      <div className="py-24 px-4 lg:px-0 mt-10 text-white max-w-310 lg:min-h-[70vh] xl:min-h-[74vh]">
+      <div className="py-24 px-4 lg:px-0 mt-10 text-white max-w-310 lg:min-h-[76vh] xl:min-h-[82vh]">
         <div className="flex flex-col lg:flex-row gap-14">
           <div className="lg:w-1/2 ">
             <h1 className="text-[40px] uppercase font-bold leading-10 font-title">
@@ -14,9 +14,30 @@ export default function Hero() {
 
             <h2
               aria-hidden="true"
-              className="uppercase text-[40px] font-bold font-title text-[#faae17] mb-4">
+              className="uppercase text-[40px] font-bold font-title text-[#faae17] mb-6">
               untuk OSN
             </h2>
+
+            {/* Badges Area */}
+            <div className="flex flex-col gap-3 mb-8">
+              {/* Badge Online */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-blue-400/60 bg-white/5 rounded-full w-fit backdrop-blur-sm shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span className="text-white text-[13px] md:text-[14px] font-medium tracking-wide">
+                  🌐 Online — Seluruh Indonesia
+                </span>
+              </div>
+
+              {/* Badge Offline */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#faae17]/80 bg-white/5 rounded-full w-fit backdrop-blur-sm shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#faae17] animate-pulse"></span>
+                <span className="text-[#faae17] text-[13px] md:text-[14px] font-medium tracking-wide">
+                  📍 Offline — Jabodetabek, Yogyakarta & Request Area Lain
+                  (Estimasi 3 Hari)
+                </span>
+              </div>
+            </div>
+
             <p className=" mb-8 font-desc text-[14px] md:text-[16px] leading-4.75 font-bold">
               Edumatrix Indonesia bangga mendukung generasi muda Indonesia dalam
               meraih prestasi di Olimpiade Sains Nasional. Program kami

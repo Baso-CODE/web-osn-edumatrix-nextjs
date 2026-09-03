@@ -2,9 +2,7 @@ import Image from "next/image";
 
 const GoldenTicketShowcase = () => {
   return (
-    <section
-      id="golden-ticket-showcase"
-      className="py-16 bg-linear-to-br from-[#ffffff] to-[#f3f3f3] relative">
+    <section id="golden-ticket-showcase" className="py-16 bg-white relative">
       <div className="max-w-310 mx-auto text-center min-h-screen lg:min-h-240 xl:min-h-[80vh] px-2 md:px-4">
         <h2 className="text-4xl font-extrabold text-[#04397d] mb-4 drop-shadow-sm font-title">
           Raih <span className="text-[#faae17]">Golden Ticket</span> Masuk
