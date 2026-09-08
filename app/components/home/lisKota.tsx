@@ -6,58 +6,226 @@ export default async function ListKota() {
   const kotaList = await getDataKotaDummy();
 
   return (
-    <section className="bg-linear-to-br from-[#0a3977] to-[#104a8b] py-16 sm:py-20 lg:py-24">
-      <div className="container mx-auto items-center max-w-310">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight drop-shadow-lg mb-4">
+    <section className="relative overflow-hidden bg-linear-to-br from-[#0a3977] to-[#104a8b] py-16 sm:py-20 lg:py-24">
+      {/* SOFT AMBIENT */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -left-40
+          top-[10%]
+          h-96
+          w-96
+          rounded-full
+          bg-white/[0.035]
+          blur-3xl
+        "
+      />
+
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -right-40
+          bottom-[8%]
+          h-96
+          w-96
+          rounded-full
+          bg-[#FAAE17]/7
+          blur-3xl
+        "
+      />
+
+      <div className="container relative z-10 mx-auto max-w-310 items-center">
+        {/* HEADER */}
+        <div className="mb-12 text-center">
+          <div className="mb-3 flex items-center justify-center gap-2">
+            <span className="h-px w-8 bg-[#FAAE17]/70 sm:w-12" />
+
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#FAAE17] sm:text-sm">
+              Jangkauan Edumatrix
+            </span>
+
+            <span className="h-px w-8 bg-[#FAAE17]/70 sm:w-12" />
+          </div>
+
+          <h2 className="mb-4 text-3xl font-extrabold leading-tight text-white drop-shadow-lg sm:text-4xl lg:text-5xl">
             Jangkauan Kami di Seluruh Indonesia
           </h2>
-          <p className="text-lg sm:text-xl text-white opacity-90 max-w-3xl mx-auto">
+
+          <p className="mx-auto max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg lg:text-xl">
             Temukan bimbingan OSN terbaik di kota Anda. Kami hadir di berbagai
             kota besar untuk mendukung impian akademismu!
           </p>
         </div>
 
-        <div className="relative w-full max-w-310 mx-auto mb-16 overflow-hidden rounded-2xl">
+        {/* MAP - TANPA BACKGROUND / CARD */}
+        <div className="relative mx-auto mb-16 w-full max-w-310 overflow-hidden">
           <Image
             src="/images/nusantara-preview-kota-indonesia.webp"
             alt="Peta Jangkauan Edumatrix Indonesia"
             width={2000}
             height={1200}
-            className="w-full h-auto object-cover"
+            className="h-auto w-full object-cover"
             priority
             loading="eager"
           />
         </div>
 
         {kotaList.length === 0 ? (
-          <div className="text-center text-white text-xl p-8">
+          <div className="p-8 text-center text-xl text-white">
             Tidak ada kota yang tersedia saat ini.
           </div>
         ) : (
-          <div className="md:px-0 px-4 w-full">
-            <div className="p-4 bg-[#25538b] bg-opacity-10 backdrop-blur-md rounded-2xl shadow-xl border border-white border-opacity-20">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 text-center">
+          <div className="w-full px-4 md:px-0">
+            <div className="relative">
+              <h3 className="relative z-10 mb-7 text-center text-2xl font-bold text-white sm:text-3xl">
                 Pilih Kotamu
               </h3>
 
-              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
+              <ul className="relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:gap-5 xl:grid-cols-6">
                 {kotaList.map((kota) => (
                   <li key={kota.slug} className="w-full">
                     <Link
                       href={`/bimbel-osn-imo-jismo-iso-ksn-di-kota/${kota.slug}`}
-                      className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden 
-                      rounded-lg border border-white border-opacity-20 bg-[#466e9f] bg-opacity-15 px-4 text-white text-xs
-                      font-semibold shadow-md hover:shadow-lg transform hover:scale-[1.02] whitespace-nowrap text-ellipsis
-                      transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 
-                      focus:ring-white focus:ring-opacity-75">
-                      <span className="relative inline-flex overflow-hidden">
-                        <div className="absolute origin-bottom transition duration-500 transform-[translateX(-150%)_skewX(33deg)] group-hover:transform-[translateX(0)_skewX(0deg)]">
+                      className="
+                        group
+                        relative
+
+                        inline-flex
+                        h-12
+                        w-full
+                        items-center
+                        justify-center
+
+                        overflow-hidden
+                        rounded-[17px]
+
+                        border
+                        border-white/20
+
+                        bg-white/[0.07]
+
+                        px-4
+
+                        text-xs
+                        font-semibold
+                        text-white
+
+                        shadow-[0_8px_22px_rgba(0,18,50,0.12),inset_0_1px_0_rgba(255,255,255,0.20)]
+
+                        backdrop-blur-[18px]
+                        backdrop-saturate-[180%]
+
+                        transition-all
+                        duration-300
+                        ease-out
+
+                        hover:-translate-y-0.5
+                        hover:border-white/32
+                        hover:bg-white/[0.11]
+
+                        hover:shadow-[0_12px_28px_rgba(0,18,50,0.16),inset_0_1px_0_rgba(255,255,255,0.28)]
+
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-white/35
+                      ">
+                      {/* TOP SPECULAR */}
+                      <span
+                        aria-hidden="true"
+                        className="
+                          pointer-events-none
+                          absolute
+                          inset-x-[12%]
+                          top-0
+                          h-px
+                          bg-linear-to-r
+                          from-transparent
+                          via-white/45
+                          to-transparent
+                        "
+                      />
+
+                      {/* SOFT UPPER REFLECTION */}
+                      <span
+                        aria-hidden="true"
+                        className="
+                          pointer-events-none
+                          absolute
+                          -left-7
+                          -top-8
+                          h-16
+                          w-20
+                          rounded-full
+                          bg-white/[0.055]
+                          blur-xl
+                        "
+                      />
+
+                      {/* SOFT LOWER REFRACTION */}
+                      <span
+                        aria-hidden="true"
+                        className="
+                          pointer-events-none
+                          absolute
+                          -bottom-7
+                          left-1/2
+                          h-12
+                          w-[85%]
+                          -translate-x-1/2
+                          rounded-full
+                          bg-white/[0.045]
+                          blur-xl
+                        "
+                      />
+
+                      {/* INNER GLASS EDGE */}
+                      <span
+                        aria-hidden="true"
+                        className="
+                          pointer-events-none
+                          absolute
+                          inset-[1px]
+                          rounded-[16px]
+                          border
+                          border-white/[0.055]
+                        "
+                      />
+
+                      {/* HOVER SHINE */}
+                      <span
+                        aria-hidden="true"
+                        className="
+                          pointer-events-none
+                          absolute
+                          -left-[70%]
+                          top-0
+                          h-full
+                          w-[35%]
+                          skew-x-[-20deg]
+                          bg-linear-to-r
+                          from-transparent
+                          via-white/25
+                          to-transparent
+                          opacity-0
+                          transition-all
+                          duration-700
+                          group-hover:left-[125%]
+                          group-hover:opacity-100
+                        "
+                      />
+
+                      <span className="relative z-10 inline-flex max-w-full overflow-hidden whitespace-nowrap text-ellipsis">
+                        <span className="transition-transform duration-500 group-hover:-translate-y-[150%]">
                           {kota.nama_kota}
-                        </div>
-                        <div className="transition duration-500 transform-[translateX(0%)_skewX(0deg)] group-hover:transform-[translateX(150%)_skewX(33deg)]">
+                        </span>
+
+                        <span className="absolute translate-y-[150%] transition-transform duration-500 group-hover:translate-y-0">
                           {kota.nama_kota}
-                        </div>
+                        </span>
                       </span>
                     </Link>
                   </li>
