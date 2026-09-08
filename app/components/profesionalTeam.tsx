@@ -12,9 +12,9 @@ const ProfessionalTeam = async () => {
 
             <div className="mt-8">
               <Image
-                src="/images/karyawan-edumatrix-indonesia.webp"
-                width={1200}
-                height={800}
+                src="/images/about-us.webp"
+                width={1500}
+                height={900}
                 alt="Tim profesional di EDUMATRIX Indonesia yang terdiri dari mentor berpengalaman di bidangnya, siap mendukung perjalanan pendidikan dan kesuksesan setiap siswa dengan pendekatan terbaik."
                 className="w-full h-auto rounded-lg"
                 priority={false}

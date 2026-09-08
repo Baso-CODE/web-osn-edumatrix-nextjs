@@ -43,8 +43,9 @@ export async function generateMetadata({
 
   const imageUrl = "https://bimbeledumatrix.com/images/osn-thumbnail.webp";
 
-  const title = `Bimbel Les Privat Olimpiade ${kabupatenName} SD SMP SMA • OSN KSN ISMO IMO JISMO`;
-  const description = `Bimbel Les Privat Olimpiade ${kabupatenName} untuk SD, SMP & SMA semua bidang: Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi, Ekonomi. Persiapan OSN, KSN, OSP, OSK, ISMO, IMO & JISMO. Mentor Berpengalaman & Program Intensif.`;
+  const title = `Bimbel & Les Privat SD SMP SMA Olimpiade OSN KSN ISMO IMO JISMO ${kabupatenName} Online & Offline`;
+  const description = `Bimbel & Les Privat SD SMP SMA Olimpiade ${kabupatenName} untuk persiapan OSN, KSN, OSP, OSK, ISMO, IMO, dan JISMO. Tersedia kelas Online & Offline dengan program intensif untuk Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi, dan Ekonomi. Dibimbing mentor berpengalaman dengan pembelajaran terarah, fleksibel, dan fokus prestasi.`;
+
   return {
     metadataBase: new URL(baseUrl),
 

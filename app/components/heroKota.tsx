@@ -8,7 +8,7 @@ import Link from "next/link";
 interface HeroKotaProps {
   kotaName: string;
   fotoKota: string;
-  contacts: ContactCs[]; // Menerima data kontak
+  contacts: ContactCs[];
 }
 
 export default function HeroKota({
@@ -16,7 +16,6 @@ export default function HeroKota({
   fotoKota,
   contacts,
 }: HeroKotaProps) {
-  // Gunakan hook single rotation dengan storageKey unik untuk HeroKota
   const { activeCs, rotateCs } = useCsRotation(
     contacts,
     "single",
@@ -24,29 +23,29 @@ export default function HeroKota({
   );
 
   if (!activeCs || activeCs.length === 0) return null;
+
   const activeContact = activeCs[0];
 
-  // 1. Format nomor HP (ubah 08... menjadi 628... agar API WA valid)
   let formattedPhone = activeContact.nomor_hp;
+
   if (formattedPhone.startsWith("0")) {
     formattedPhone = "62" + formattedPhone.substring(1);
   } else if (formattedPhone.startsWith("+")) {
     formattedPhone = formattedPhone.substring(1);
   }
 
-  // 2. Ekstrak otomatis link katalog unik milik CS dari link_cta bawaan data
   const decodedLink = decodeURIComponent(activeContact.link_cta);
   const catalogMatch = decodedLink.match(/https:\/\/wa\.me\/p\/[0-9]+\/[0-9]+/);
   const catalogUrl = catalogMatch ? catalogMatch[0] : "";
 
-  // 3. Buat link dinamis baru yang menggabungkan nama Kota DAN link Katalog
   const dynamicLink = `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodeURIComponent(
     `Halo ${activeContact.nama_cs} (https://bimbeledumatrix.com/), saya ingin tanya program belajar OSN di ${kotaName} yang ada di Edumatrix Indonesia. Apa saja jenis program belajar dan pilihan paketnya?\n\n---\n*Katalog Kisah Sukses & Bukti Prestasi Siswa Edumatrix:*\n${catalogUrl}`,
   )}`;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    rotateCs(); // Lakukan rotasi CS dan simpan ke localStorage
+
+    rotateCs();
 
     setTimeout(() => {
       window.open(dynamicLink, "_blank", "noopener,noreferrer");
@@ -54,38 +53,110 @@ export default function HeroKota({
   };
 
   return (
-    <section className="relative bg-[#04397D] flex items-center justify-center">
-      <div className="py-16 px-2 mt-16 text-white max-w-310 lg:min-h-[70vh] xl:min-h-[82vh]">
-        <div className="flex flex-col lg:flex-row gap-14">
-          {/* ===== TEXT SECTION ===== */}
+    <section className="relative flex items-center justify-center bg-[#04397D]">
+      <div className="mt-16 max-w-310 px-2 py-16 text-white lg:min-h-[70vh] xl:min-h-[82vh]">
+        <div className="flex flex-col gap-14 lg:flex-row lg:items-center">
+          {/* TEXT */}
           <div className="lg:w-1/2">
-            <h1 className="text-[38px] uppercase font-bold leading-10 font-title mb-6">
+            <h1 className="mb-6 font-title text-[34px] font-bold uppercase leading-9 sm:text-[38px] sm:leading-10">
               BIMBEL & LES PRIVAT OSN KSN IMO SD SMP SMA Di{" "}
               <span className="text-[#faae17]">{kotaName}</span> TERBAIK #1
             </h1>
 
-            {/* Badges Area */}
-            <div className="flex flex-col gap-3 mb-8">
-              {/* Badge Online */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 border border-blue-400/60 bg-white/5 rounded-full w-fit backdrop-blur-sm shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                <span className="text-white text-[13px] md:text-[14px] font-medium tracking-wide">
+            {/* BADGES */}
+            <div className="mb-8 flex flex-col gap-3">
+              {/* ONLINE */}
+              <div
+                className="
+                  relative
+                  inline-flex
+                  w-fit
+                  items-center
+                  gap-2
+                  overflow-hidden
+                  rounded-full
+                  border
+                  border-white/20
+                  px-4
+                  py-2
+                  shadow-[0_8px_22px_rgba(0,20,55,0.16),inset_0_1px_0_rgba(255,255,255,0.22)]
+                  backdrop-blur-[18px]
+                  backdrop-saturate-[180%]
+                "
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 55%, rgba(255,255,255,0.03) 100%)",
+                }}>
+                <span
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-[12%]
+                    top-0
+                    h-px
+                    bg-linear-to-r
+                    from-transparent
+                    via-white/45
+                    to-transparent
+                  "
+                />
+
+                <span className="relative z-10 h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+
+                <span className="relative z-10 text-[13px] font-medium tracking-wide text-white md:text-[14px]">
                   🌐 Online — Seluruh Indonesia
                 </span>
               </div>
 
-              {/* Badge Offline (Dinamis dengan kotaName) */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#faae17]/80 bg-white/5 rounded-full w-fit backdrop-blur-sm shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#faae17] animate-pulse"></span>
-                <span className="text-[#faae17] text-[13px] md:text-[14px] font-medium tracking-wide capitalize">
+              {/* OFFLINE */}
+              <div
+                className="
+                  relative
+                  inline-flex
+                  w-fit
+                  items-center
+                  gap-2
+                  overflow-hidden
+                  rounded-full
+                  border
+                  border-[#faae17]/40
+                  px-4
+                  py-2
+                  shadow-[0_8px_22px_rgba(0,20,55,0.16),inset_0_1px_0_rgba(255,255,255,0.18)]
+                  backdrop-blur-[18px]
+                  backdrop-saturate-[180%]
+                "
+                style={{
+                  background:
+                    "linear-gradient(145deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 55%, rgba(255,255,255,0.025) 100%)",
+                }}>
+                <span
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-[12%]
+                    top-0
+                    h-px
+                    bg-linear-to-r
+                    from-transparent
+                    via-[#faae17]/35
+                    to-transparent
+                  "
+                />
+
+                <span className="relative z-10 h-2 w-2 rounded-full bg-[#faae17] animate-pulse" />
+
+                <span className="relative z-10 text-[13px] font-medium tracking-wide text-[#faae17] capitalize md:text-[14px]">
                   📍 Offline — Request Kota {kotaName} (Estimasi 3 Hari)
                 </span>
               </div>
             </div>
 
-            <p className="mb-4 font-desc text-[1rem] leading-4.75 font-medium">
+            <p className="mb-6 font-desc text-[15px] font-medium leading-6 text-white/90 md:text-[16px]">
               Edumatrix hadir di{" "}
-              <span className="text-[#faae17] font-extrabold uppercase">
+              <span className="font-extrabold uppercase text-[#faae17]">
                 {kotaName}
               </span>{" "}
               sebagai bimbingan belajar dan les privat terbaik untuk persiapan
@@ -93,11 +164,11 @@ export default function HeroKota({
               akademik tingkat nasional maupun internasional. Program kami
               dirancang khusus untuk membantu siswa{" "}
               <strong>SD, SMP, dan SMA</strong> agar lebih percaya diri,
-              berpikir kritis, dan siap menghadapi tantangan OSN di bidang{" "}
-              matematika, fisika, kimia, biologi, komputer, dan ekonomi . Dengan
+              berpikir kritis, dan siap menghadapi tantangan OSN di bidang
+              matematika, fisika, kimia, biologi, komputer, dan ekonomi. Dengan
               pengajar profesional dan metode belajar interaktif, Edumatrix
               memastikan siswa di{" "}
-              <span className="text-[#faae17] font-extrabold uppercase">
+              <span className="font-extrabold uppercase text-[#faae17]">
                 {kotaName}
               </span>{" "}
               mendapatkan <strong>pendampingan intensif</strong> agar dapat
@@ -105,51 +176,158 @@ export default function HeroKota({
               sains tingkat dunia.
             </p>
 
-            {/* CTA */}
+            {/* CTA LIQUID GLASS */}
             <Link
               href={dynamicLink}
               onClick={handleClick}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Daftar Sekarang via WhatsApp dengan ${activeContact.nama_cs}`}
-              className="group relative inline-flex w-full md:w-[50%] lg:w-[40%] 
-                h-14 items-center justify-center rounded-full bg-[#F68507] 
-                py-1 pl-6 pr-14 font-medium text-neutral-50 cursor-pointer">
-              <span className="z-10 pr-2 font-bold">Daftar Sekarang</span>
+              className="
+                group
+                relative
+                inline-flex
+                h-14
+                w-full
+                items-center
+                justify-center
+                overflow-hidden
+                rounded-full
+                border
+                border-white/20
+                px-6
+                pr-14
+                font-medium
+                text-white
+                shadow-[0_12px_28px_rgba(0,20,55,0.20),inset_0_1px_0_rgba(255,255,255,0.20)]
+                backdrop-blur-[18px]
+                backdrop-saturate-[180%]
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:shadow-[0_16px_34px_rgba(0,20,55,0.24),inset_0_1px_0_rgba(255,255,255,0.26)]
+                md:w-[50%]
+                lg:w-[40%]
+              "
+              style={{
+                background: [
+                  "linear-gradient(145deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 40%, transparent 68%)",
+                  "linear-gradient(135deg, #F68507 0%, #F79B1E 55%, #F6A72C 100%)",
+                ].join(", "),
+              }}>
+              <span
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-x-[12%]
+                  top-0
+                  h-px
+                  bg-linear-to-r
+                  from-transparent
+                  via-white/45
+                  to-transparent
+                "
+              />
+
+              <span className="relative z-20 pr-2 font-bold">
+                Daftar Sekarang
+              </span>
+
               <div
-                className="absolute right-1 inline-flex h-12 w-12 items-center justify-end 
-                rounded-full bg-[#04397d] transition-[width] group-hover:w-[calc(100%-8px)]">
-                <div className="mr-3.5 flex items-center justify-center">
+                className="
+                  absolute
+                  right-1
+                  top-1/2
+                  z-10
+                  flex
+                  h-12
+                  w-12
+                  -translate-y-1/2
+                  items-center
+                  justify-end
+                  overflow-hidden
+                  rounded-full
+                  border
+                  border-white/18
+                  shadow-[0_8px_20px_rgba(0,20,55,0.22),inset_0_1px_0_rgba(255,255,255,0.18)]
+                  backdrop-blur-[18px]
+                  backdrop-saturate-[180%]
+                  transition-[width]
+                  duration-500
+                  ease-out
+                  group-hover:w-[calc(100%-8px)]
+                "
+                style={{
+                  background: [
+                    "linear-gradient(145deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.03) 45%, transparent 70%)",
+                    "linear-gradient(135deg, #04397D 0%, #0754A6 100%)",
+                  ].join(", "),
+                }}>
+                <span
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-[12%]
+                    top-0
+                    h-px
+                    bg-linear-to-r
+                    from-transparent
+                    via-white/35
+                    to-transparent
+                  "
+                />
+
+                <div className="relative z-20 mr-3.5 flex items-center justify-center">
                   <svg
                     width="15"
                     height="15"
                     viewBox="0 0 15 15"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-neutral-50">
+                    className="h-5 w-5 text-white transition-transform duration-300 group-hover:translate-x-0.5">
                     <path
-                      d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 
-                      3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 
-                      12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 
-                      12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 
-                      8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 
-                      7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 
-                      3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-                      fill="currentColor"></path>
+                      d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                      fill="currentColor"
+                    />
                   </svg>
                 </div>
               </div>
+
+              <span
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute
+                  -left-[60%]
+                  top-0
+                  z-30
+                  h-full
+                  w-[30%]
+                  skew-x-[-20deg]
+                  bg-linear-to-r
+                  from-transparent
+                  via-white/25
+                  to-transparent
+                  opacity-0
+                  transition-all
+                  duration-700
+                  group-hover:left-[125%]
+                  group-hover:opacity-100
+                "
+              />
             </Link>
           </div>
 
-          {/* ===== IMAGE ===== */}
-          <div className="lg:w-1/2 flex justify-center items-center">
+          {/* IMAGE - TETAP CLEAN */}
+          <div className="flex items-center justify-center lg:w-1/2">
             <Image
               src={fotoKota}
               alt={`Les privat OSN di ${kotaName}`}
               width={700}
               height={450}
-              className="w-full h-auto rounded-md"
+              className="h-auto w-full rounded-md object-cover"
               priority
               fetchPriority="high"
               loading="eager"
@@ -158,12 +336,13 @@ export default function HeroKota({
         </div>
       </div>
 
-      {/* Wave */}
-      <div className="absolute -bottom-px xl:-bottom-22.5 left-0 w-full">
+      {/* WAVE */}
+      <div className="absolute -bottom-px left-0 w-full xl:-bottom-22.5">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#ffffff"
-            d="M0,192L48,202.7C96,213,192,235,288,224C384,213,480,171,576,176C672,181,768,235,864,229.3C960,224,1056,160,1152,138.7C1248,117,1344,139,1392,149.3L1440,160V320H0Z"></path>
+            d="M0,192L48,202.7C96,213,192,235,288,224C384,213,480,171,576,176C672,181,768,235,864,229.3C960,224,1056,160,1152,138.7C1248,117,1344,139,1392,149.3L1440,160V320H0Z"
+          />
         </svg>
       </div>
     </section>

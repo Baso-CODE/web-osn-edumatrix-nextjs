@@ -45,8 +45,9 @@ export async function generateMetadata({
     ? `https://bimbeledumatrix.com/${kotaData.foto_kota}`
     : "https://bimbeledumatrix.com/images/images-cta.webp";
 
-  const ogTitle = `Bimbel Les Privat Olimpiade ${formattedKotaName} SD SMP SMA • OSN KSN ISMO IMO JISMO Terbaik`;
-  const ogDescription = ` Bimbel Les Privat Olimpiade ${formattedKotaName} untuk SD, SMP & SMA semua bidang: Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi, Ekonomi. Persiapan OSN, KSN, ISMO, IMO, JISMO hingga tingkat Nasional & Internasional. Mentor Berpengalaman • Program Intensif • Laporan Perkembangan • Daftar Sekarang!`;
+  const ogTitle = `Bimbel & Les Privat SD SMP SMA Olimpiade ${formattedKotaName} Online Offline • OSN KSN ISMO IMO JISMO`;
+  const ogDescription = `Bimbel & Les Privat SD SMP SMA Olimpiade di ${formattedKotaName} untuk persiapan OSN, KSN, ISMO, IMO, JISMO tingkat Nasional & Internasional. Tersedia program Online dan Offline untuk Matematika, IPA, Fisika, Kimia, Biologi, Informatika, Astronomi, Geografi & Ekonomi. Dibimbing mentor berpengalaman dengan program intensif, evaluasi belajar, dan pendampingan terarah.`;
+
   return {
     metadataBase: new URL(baseUrl),
     title: ogTitle,

@@ -420,7 +420,7 @@ export default function BottomNavigationBarOSN({
         shadow-[0_18px_46px_rgba(0,18,55,0.42),0_5px_15px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.34),inset_0_-1px_0_rgba(0,15,55,0.18)]
 
         backdrop-blur-[28px]
-        backdrop-saturate-[200%]
+        backdrop-saturate-200
 
         lg:hidden
       "
@@ -456,8 +456,8 @@ export default function BottomNavigationBarOSN({
         className="
           pointer-events-none
           absolute
-          -left-[12%]
-          -top-[75%]
+          left-[-12%]
+          top-[-75%]
 
           h-[125%]
           w-[55%]
@@ -500,7 +500,7 @@ export default function BottomNavigationBarOSN({
 
           mx-auto
           flex
-          h-[70px]
+          h-17.5
           max-w-full
           items-center
 
@@ -519,8 +519,8 @@ export default function BottomNavigationBarOSN({
             className="
               pointer-events-none
               absolute
-              bottom-[5px]
-              top-[5px]
+              bottom-1.25
+              top-1.25
               z-0
 
               overflow-hidden
@@ -532,8 +532,8 @@ export default function BottomNavigationBarOSN({
 
               shadow-[0_9px_24px_rgba(0,20,60,0.20),0_2px_7px_rgba(0,0,0,0.09),inset_0_1px_0_rgba(255,255,255,0.90),inset_0_-1px_0_rgba(4,57,125,0.07)]
 
-              backdrop-blur-[24px]
-              backdrop-saturate-[200%]
+              backdrop-blur-xl
+              backdrop-saturate-200
 
               will-change-transform
             "
@@ -601,7 +601,7 @@ export default function BottomNavigationBarOSN({
                 h-9
                 w-5
 
-                rotate-[18deg]
+                rotate-18
                 rounded-full
 
                 bg-white/30
@@ -614,7 +614,7 @@ export default function BottomNavigationBarOSN({
               aria-hidden="true"
               className="
                 absolute
-                inset-[1px]
+                inset-px
 
                 rounded-[20px]
 
@@ -681,8 +681,8 @@ export default function BottomNavigationBarOSN({
                   z-10
 
                   mb-1
-                  h-[21px]
-                  w-[21px]
+                  h-5.25
+                  w-5.25
                   shrink-0
 
                   will-change-transform

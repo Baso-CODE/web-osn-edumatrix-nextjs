@@ -32,7 +32,7 @@ export function AccordionFAQ({ title, content }: AccordionFAQProps) {
         border
 
         backdrop-blur-[18px]
-        backdrop-saturate-[180%]
+        backdrop-saturate-180
 
         transition-all
         duration-500
@@ -138,7 +138,7 @@ export function AccordionFAQ({ title, content }: AccordionFAQProps) {
             shadow-[0_6px_16px_rgba(4,57,125,0.10),inset_0_1px_0_rgba(255,255,255,0.9)]
 
             backdrop-blur-[18px]
-            backdrop-saturate-[190%]
+            backdrop-saturate-190
 
             transition-all
             duration-500
@@ -184,7 +184,7 @@ export function AccordionFAQ({ title, content }: AccordionFAQProps) {
               relative
               overflow-hidden
 
-              rounded-[16px]
+              rounded-2xl
 
               border
               border-white/22
@@ -201,7 +201,7 @@ export function AccordionFAQ({ title, content }: AccordionFAQProps) {
               shadow-[0_10px_24px_rgba(4,40,90,0.16),inset_0_1px_0_rgba(255,255,255,0.18)]
 
               backdrop-blur-[20px]
-              backdrop-saturate-[180%]
+              backdrop-saturate-180
 
               sm:px-5
               sm:text-base
@@ -241,7 +241,7 @@ export function AccordionFAQ({ title, content }: AccordionFAQProps) {
                 w-[90%]
                 -translate-x-1/2
                 rounded-[50%]
-                bg-white/[0.055]
+                bg-white/5.5
                 blur-2xl
               "
             />

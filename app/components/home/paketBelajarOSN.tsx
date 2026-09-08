@@ -61,16 +61,6 @@ const PaketBelajarOSN = () => {
         <div className="w-full">
           {/* HEADER */}
           <div className="mx-auto mb-12 max-w-3xl text-center md:mb-14">
-            <div className="mb-3 flex items-center justify-center gap-2">
-              <span className="h-px w-8 bg-[#FAAE17]/60 sm:w-12" />
-
-              <span className="font-desc text-xs font-bold tracking-[0.18em] text-[#056fcb] uppercase sm:text-sm">
-                Paket Belajar OSN
-              </span>
-
-              <span className="h-px w-8 bg-[#FAAE17]/60 sm:w-12" />
-            </div>
-
             <h2
               className="
                 font-title

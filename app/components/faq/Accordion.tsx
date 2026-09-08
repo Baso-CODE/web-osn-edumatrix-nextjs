@@ -76,7 +76,7 @@ export default async function Accordion() {
                 shadow-[0_20px_50px_rgba(4,57,125,0.10),0_4px_14px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,1)]
 
                 backdrop-blur-[26px]
-                backdrop-saturate-[190%]
+                backdrop-saturate-190
 
                 sm:p-3
               "
@@ -143,7 +143,7 @@ export default async function Accordion() {
                 className="
                   pointer-events-none
                   absolute
-                  inset-[1px]
+                  inset-px
                   rounded-[29px]
                   border
                   border-white/50

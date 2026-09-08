@@ -58,10 +58,10 @@ export default function FloatingCTAClient({ contacts }: Props) {
         className="
           relative
 
-          max-w-[170px]
+          max-w-42.5
           overflow-visible
 
-          rounded-[16px]
+          rounded-2xl
 
           border
           border-white/55
@@ -76,8 +76,8 @@ export default function FloatingCTAClient({ contacts }: Props) {
 
           shadow-[0_10px_30px_rgba(0,30,70,0.14),0_3px_10px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-1px_0_rgba(4,57,125,0.05)]
 
-          backdrop-blur-[24px]
-          backdrop-saturate-[190%]
+          backdrop-blur-xl
+          backdrop-saturate-190
 
           transition-all
           duration-500
@@ -146,7 +146,7 @@ export default function FloatingCTAClient({ contacts }: Props) {
           className="
             pointer-events-none
             absolute
-            inset-[1px]
+            inset-px
 
             rounded-[15px]
 
@@ -163,7 +163,7 @@ export default function FloatingCTAClient({ contacts }: Props) {
           className="
             pointer-events-none
             absolute
-            -right-[6px]
+            -right-1.5
             top-1/2
 
             h-3
@@ -192,7 +192,7 @@ export default function FloatingCTAClient({ contacts }: Props) {
           className="
             pointer-events-none
             absolute
-            inset-[-7px]
+            -inset-1.75
 
             rounded-full
 
