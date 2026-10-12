@@ -1,32 +1,39 @@
-import { KelurahanResponse } from "@/app/types/kota.types";
-import { baseUrlClient } from "../../utils/config";
 import { getKelurahanDummyByKecamatanSlug } from "@/app/lib/getDummyDataRequest/getKelurahanDummy.reques";
+import { KelurahanResponse } from "@/app/types/kota.types";
+import { baseUrlWilayah } from "@/app/utils/config";
 
 export async function getKecamatanBySlug(
-  slug: string
+  slug: string,
 ): Promise<KelurahanResponse["data"]> {
-  try {
-    const response = await fetch(`${baseUrlClient}/kecamatans/slug/${slug}`, {
-      method: "GET",
-      cache: "force-cache",
-    });
+  if (!slug) return { kelurahans: [] };
 
-    // Jika gagal → fallback ke dummy
+  try {
+    const response = await fetch(
+      `${baseUrlWilayah}/kecamatans/slug/${encodeURIComponent(slug)}`,
+      {
+        headers: { Accept: "application/json" },
+        next: { revalidate: 300 },
+        signal: AbortSignal.timeout(10000),
+      },
+    );
+
     if (!response.ok) {
-      return {
-        kelurahans: getKelurahanDummyByKecamatanSlug(slug),
-      };
+      throw new Error(`API kecamatan mengembalikan HTTP ${response.status}`);
+    }
+
+    const contentType = response.headers.get("content-type") ?? "";
+    if (!contentType.toLowerCase().includes("application/json")) {
+      throw new Error("Respons API kecamatan bukan JSON");
     }
 
     const result: KelurahanResponse = await response.json();
+    if (!Array.isArray(result.data?.kelurahans)) {
+      throw new Error("Data kelurahan tidak valid");
+    }
 
-    return {
-      kelurahans: result.data?.kelurahans ?? [],
-    };
+    return { kelurahans: result.data.kelurahans };
   } catch (error) {
-    console.error("Error get kecamatans:", error);
-
-    // Jika network error → fallback dummy
+    console.error("getKecamatanBySlug error:", error);
     return {
       kelurahans: getKelurahanDummyByKecamatanSlug(slug),
     };

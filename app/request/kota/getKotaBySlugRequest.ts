@@ -1,7 +1,7 @@
 import { getKotaDummyBySlug } from "@/app/lib/getDummyDataRequest/getImageKotaDummy.data";
 import { getKabupatenDummyByKotaSlug } from "@/app/lib/getDummyDataRequest/getKabupatenDummy.request";
 import { GetKotaBySlugResponse } from "@/app/types/kota.types";
-import { baseUrlClient } from "@/app/utils/config";
+import { baseUrlGambarWilayah, baseUrlWilayah } from "@/app/utils/config";
 
 export async function getKotaBySlug(
   slug?: string,
@@ -26,46 +26,49 @@ export async function getKotaBySlug(
     message,
   });
 
-  const url = `${baseUrlClient}/kotas/slug/${encodeURIComponent(slug)}`;
-
   try {
-    const res = await fetch(url, {
-      method: "GET",
-      next: { revalidate: 300 },
-      signal: AbortSignal.timeout(10000),
-      headers: { Accept: "application/json" },
-    });
-
-    const contentType = res.headers.get("content-type") ?? "";
+    const res = await fetch(
+      `${baseUrlWilayah}/kotas/slug/${encodeURIComponent(slug)}`,
+      {
+        headers: { Accept: "application/json" },
+        next: { revalidate: 300 },
+        signal: AbortSignal.timeout(10000),
+      },
+    );
 
     if (!res.ok) {
-      console.error(`[getKotaBySlug] HTTP ${res.status}: ${url}`);
-      return fallback(res.status, "API request failed");
+      return fallback(res.status, "API gagal - menggunakan data cadangan");
     }
 
+    const contentType = res.headers.get("content-type") ?? "";
     if (!contentType.toLowerCase().includes("application/json")) {
-      console.error(
-        `[getKotaBySlug] Invalid content-type: ${contentType}, URL: ${url}`,
-      );
-      return fallback(502, "API returned non-JSON content");
+      return fallback(502, "Respons API bukan JSON");
     }
 
     const json = await res.json();
+    const kota = json.data?.kota ?? json.data;
 
-    if (!json || typeof json !== "object") {
-      return fallback(502, "Invalid API response");
+    if (!kota || typeof kota.nama_kota !== "string") {
+      return fallback(502, "Data kota tidak valid");
     }
+
+    const kabupatens = json.data?.kabupatens ?? json.data?.kotakabupatens ?? [];
 
     return {
       status: res.status,
       data: {
-        kota: json.data?.kota ?? json.data ?? null,
-        kabupatens: json.data?.kabupatens ?? json.data?.kotakabupatens ?? [],
+        kota: {
+          ...kota,
+          foto_kota: kota.foto_kota
+            ? new URL(kota.foto_kota, baseUrlGambarWilayah).href
+            : null,
+        },
+        kabupatens: Array.isArray(kabupatens) ? kabupatens : [],
       },
-      message: json.message ?? "Success",
+      message: json.message ?? "Wilayah ditemukan",
     };
   } catch (error) {
-    console.error(`[getKotaBySlug] Request failed: ${url}`, error);
-    return fallback(503, "API unavailable - using fallback");
+    console.error("getKotaBySlug error:", error);
+    return fallback(503, "API tidak tersedia - menggunakan data cadangan");
   }
 }
